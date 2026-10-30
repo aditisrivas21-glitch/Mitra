@@ -24,12 +24,13 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Conversational AI Agent API", version="1.0.0", lifespan=lifespan)
 
-# CORS: only the listed frontend origins may call this API from a browser.
+# CORS Configuration
 app.add_middleware(
     CORSMiddleware,
     allow_origins=config.FRONTEND_ORIGINS,
-    allow_methods=["GET", "POST", "DELETE"],
-    allow_headers=["Content-Type"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
