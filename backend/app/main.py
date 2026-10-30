@@ -24,10 +24,12 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Conversational AI Agent API", version="1.0.0", lifespan=lifespan)
 
-# CORS Configuration
+# ---------- CORS Configuration ----------
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=config.FRONTEND_ORIGINS,
+    allow_origin_regex=r"https://[a-zA-Z0-9-]+--mitra-ai-study-companion\.netlify\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
