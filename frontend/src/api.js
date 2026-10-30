@@ -1,12 +1,23 @@
 const API_BASE_URL = (
-  import.meta.env.VITE_API_URL || "https://mitra-backend-cj81.onrender.com"
+  import.meta.env.VITE_API_URL ||
+  "https://mitra-backend-cj81.onrender.com"
 ).replace(/\/+$/, "");
 
 export default API_BASE_URL;
 
 function getApiUrl(path) {
+  const normalizedPath = path.startsWith("/")
+    ? path
+    : `/${path}`;
+
+  return `${API_BASE_URL}/api${normalizedPath}`;
+}
+
+export default API_BASE_URL;
+
+function getApiUrl(path) {
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
-  return `${BASE}/api${normalizedPath}`;
+  return `${API_BASE_URL}/api${normalizedPath}`;
 }
 
 async function request(path, options = {}) {
